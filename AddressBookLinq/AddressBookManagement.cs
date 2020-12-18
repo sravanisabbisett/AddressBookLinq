@@ -44,11 +44,22 @@ namespace AddressBookLinq
             Console.WriteLine("Contact is updated");
         }
 
-
+        /// <summary>
+        /// Deletes the contact.
+        /// </summary>
+        /// <param name="firstname">The firstname.</param>
+        public void DeleteContact(string firstname)
+        {
+            var query = dataTable.AsEnumerable().Where(r => r.Field<string>("FirstName") == firstname);
+            foreach(var data in query.ToList())
+            {
+                data.Delete();
+            }
+        }
         /// <summary>
         /// Gets all contacts.
         /// </summary>
-/        public void GetAllContacts()
+        public void GetAllContacts()
         {
             foreach (DataRow dr in dataTable.AsEnumerable())
             {

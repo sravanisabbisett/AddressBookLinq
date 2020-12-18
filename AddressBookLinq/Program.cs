@@ -10,7 +10,7 @@ namespace AddressBookLinq
             AddressBookManagement addressBookManagement = new AddressBookManagement();
             while (true)
             {
-                Console.WriteLine("1)GetAllData\n" + "2)UpdatePerson\n");
+                Console.WriteLine("1)GetAllData\n" + "2)UpdatePerson\n"+"3)Delete person");
 
                 try
                 {
@@ -29,6 +29,11 @@ namespace AddressBookLinq
                             Console.WriteLine("Enter the value you want to update");
                             string newValue=Console.ReadLine();
                             addressBookManagement.UpdateContact(firstname, lastName, cloumnName, newValue);
+                            break;
+                        case 3:
+                            Console.WriteLine("Enter your firstname to delete");
+                            string name = Console.ReadLine();
+                            addressBookManagement.DeleteContact(name);
                             break;
                         default:
                             Console.WriteLine("Please Enter correct option");
