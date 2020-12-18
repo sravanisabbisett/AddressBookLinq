@@ -93,6 +93,30 @@ namespace AddressBookLinq
                         select person;
             Console.WriteLine("No of Persons in particular city and state is:" + query.Count());
         }
+
+        /// <summary>
+        /// Orders the first name of the by.
+        /// </summary>
+        /// <param name="city">The city.</param>
+        public void OrderByFirstName(string city)
+        {
+            var query = from person in dataTable.AsEnumerable()
+                        where person.Field<string>("City").Equals(city)
+                        orderby person.Field<string>("FirstName")
+                        select person;
+            foreach (DataRow dataRow in query)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("FirstName:- " + dataRow.Field<string>("FirstName"));
+                Console.WriteLine("lastName:- " + dataRow.Field<string>("LastName"));
+                Console.WriteLine("Address:- " + dataRow.Field<string>("Address"));
+                Console.WriteLine("City:- " + dataRow.Field<string>("City"));
+                Console.WriteLine("State:- " + dataRow.Field<string>("State"));
+                Console.WriteLine("zip:- " + dataRow.Field<string>("Zip"));
+                Console.WriteLine("phoneNumber:- " + dataRow.Field<string>("PhoneNumber"));
+                Console.WriteLine("EMail:- " + dataRow.Field<string>("EmailId"));
+            }
+        }
         /// <summary>
         /// Gets all contacts.
         /// </summary>

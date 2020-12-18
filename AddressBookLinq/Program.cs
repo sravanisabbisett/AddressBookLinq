@@ -10,7 +10,8 @@ namespace AddressBookLinq
             AddressBookManagement addressBookManagement = new AddressBookManagement();
             while (true)
             {
-                Console.WriteLine("1)GetAllData\n" + "2)UpdatePerson\n"+"3)Delete person\n"+"4)RetriceCityOrState\n"+"5)CountCityandState");
+                Console.WriteLine("1)GetAllData\n" + "2)UpdatePerson\n"+"3)Delete person\n"+"4)RetriceCityOrState\n"+"5)CountCityandState\n"+
+                                   "7)OrderByFirstName");
 
                 try
                 {
@@ -46,6 +47,11 @@ namespace AddressBookLinq
                             string cityCount = Console.ReadLine();
                             string stateCount = Console.ReadLine();
                             addressBookManagement.CountByCityAndState(cityCount, stateCount);
+                            break;
+                        case 6:
+                            Console.WriteLine("Enter your city name");
+                            string orderByCity = Console.ReadLine();
+                            addressBookManagement.OrderByFirstName(orderByCity);
                             break;
                         default:
                             Console.WriteLine("Please Enter correct option");
