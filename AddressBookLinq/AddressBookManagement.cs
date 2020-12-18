@@ -80,6 +80,19 @@ namespace AddressBookLinq
                 Console.WriteLine("EMail:- " + dataRow.Field<string>("EmailId"));
             }
         }
+
+        /// <summary>
+        /// Counts the state of the by city and.
+        /// </summary>
+        /// <param name="city">The city.</param>
+        /// <param name="state">The state.</param>
+        public void CountByCityAndState(string city,string state)
+        {
+            var query = from person in dataTable.AsEnumerable()
+                        where person.Field<string>("City").Equals(city) && person.Field<string>("State").Equals(state)
+                        select person;
+            Console.WriteLine("No of Persons in particular city and state is:" + query.Count());
+        }
         /// <summary>
         /// Gets all contacts.
         /// </summary>
