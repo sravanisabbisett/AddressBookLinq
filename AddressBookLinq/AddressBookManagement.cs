@@ -56,6 +56,30 @@ namespace AddressBookLinq
                 data.Delete();
             }
         }
+
+        /// <summary>
+        /// Retrives the state of the city or.
+        /// </summary>
+        /// <param name="city">The city.</param>
+        /// <param name="state">The state.</param>
+        public void RetriveCityOrState(string city,string state)
+        {
+            var query = from records in dataTable.AsEnumerable()
+                        where records.Field<string>("City").Equals(city) || records.Field<string>("State").Equals(state)
+                        select records;
+            foreach(DataRow dataRow in query)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("FirstName:- " + dataRow.Field<string>("FirstName"));
+                Console.WriteLine("lastName:- " + dataRow.Field<string>("LastName"));
+                Console.WriteLine("Address:- " + dataRow.Field<string>("Address"));
+                Console.WriteLine("City:- " + dataRow.Field<string>("City"));
+                Console.WriteLine("State:- " + dataRow.Field<string>("State"));
+                Console.WriteLine("zip:- " + dataRow.Field<string>("Zip"));
+                Console.WriteLine("phoneNumber:- " + dataRow.Field<string>("PhoneNumber"));
+                Console.WriteLine("EMail:- " + dataRow.Field<string>("EmailId"));
+            }
+        }
         /// <summary>
         /// Gets all contacts.
         /// </summary>

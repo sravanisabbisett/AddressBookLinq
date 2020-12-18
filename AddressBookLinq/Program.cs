@@ -10,7 +10,7 @@ namespace AddressBookLinq
             AddressBookManagement addressBookManagement = new AddressBookManagement();
             while (true)
             {
-                Console.WriteLine("1)GetAllData\n" + "2)UpdatePerson\n"+"3)Delete person");
+                Console.WriteLine("1)GetAllData\n" + "2)UpdatePerson\n"+"3)Delete person\n"+"4)RetriceCityOrState");
 
                 try
                 {
@@ -34,6 +34,12 @@ namespace AddressBookLinq
                             Console.WriteLine("Enter your firstname to delete");
                             string name = Console.ReadLine();
                             addressBookManagement.DeleteContact(name);
+                            break;
+                        case 4:
+                            Console.WriteLine("Enter your city and state");
+                            string city = Console.ReadLine();
+                            string state = Console.ReadLine();
+                            addressBookManagement.RetriveCityOrState(city, state);
                             break;
                         default:
                             Console.WriteLine("Please Enter correct option");
