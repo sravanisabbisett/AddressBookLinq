@@ -13,6 +13,12 @@ namespace AddressBookLinq
         public AddressBookManagement()
         {
             //UC2 Add columns
+            DataColumn dataColumn;
+            dataColumn= new DataColumn();
+            dataColumn.DataType = typeof(Int32);
+            dataColumn.ColumnName = "PersonID";
+            dataColumn.AutoIncrement = true;
+            dataTable.Columns.Add(dataColumn);
             dataTable.Columns.Add("FirstName", typeof(string));
             dataTable.Columns.Add("LastName", typeof(string));
             dataTable.Columns.Add("Address", typeof(string));
@@ -21,13 +27,22 @@ namespace AddressBookLinq
             dataTable.Columns.Add("Zip", typeof(string));
             dataTable.Columns.Add("PhoneNumber", typeof(string));
             dataTable.Columns.Add("EmailId", typeof(string));
+            dataColumn = new DataColumn();
+            dataColumn = new DataColumn();
+            dataColumn.DataType = typeof(string);
+            dataColumn.ColumnName = "PersonType";
+            dataColumn.AllowDBNull = false;
+            dataTable.Columns.Add(dataColumn);
+            DataColumn[] PrimaryKeyColumns = new DataColumn[1];
+            PrimaryKeyColumns[0] = dataTable.Columns["PersonID"];
+            dataTable.PrimaryKey = PrimaryKeyColumns;
 
             //UC3 insert values in table
-            dataTable.Rows.Add("Sravani", "Sabbisetti", "GandhiChowk", "Bantumilli", "AndhraPradesh", "521324", "8712443377", "Sravani@gmail.com");
-            dataTable.Rows.Add("Akhilesh", "Sabbisetti", "Perungudi", "Chennai", "Tamilnadu", "456789", "7207321696", "Akhilesh@gmail.com");
-            dataTable.Rows.Add("Sailaja", "Sabbisetti", "VyjayanthiTraders", "Bantumilli","AndhraPradesh", "789012", "9295702642", "sailaja@gmail.com");
-            dataTable.Rows.Add("Badarinath", "Sabbisetti", "Aswini", "Bantumilli", "AndhraPradesh", "521324", "9290815127", "Badarinath@gmail.com");
-            dataTable.Rows.Add("Manjusha", "Chedhalla", "Ponnur", "Guntur", "AndhraPradesh", "789065", "2345678912", "Manjusha@gmail.com");
+            dataTable.Rows.Add(1,"Sravani", "Sabbisetti", "GandhiChowk", "Bantumilli", "AndhraPradesh", "521324", "8712443377", "Sravani@gmail.com","Friend");
+            dataTable.Rows.Add(2,"Akhilesh", "Sabbisetti", "Perungudi", "Chennai", "Tamilnadu", "456789", "7207321696", "Akhilesh@gmail.com","Family");
+            dataTable.Rows.Add(3,"Sailaja", "Sabbisetti", "VyjayanthiTraders", "Bantumilli","AndhraPradesh", "789012", "9295702642", "sailaja@gmail.com","Family");
+            dataTable.Rows.Add(4,"Badarinath", "Sabbisetti", "Aswini", "Bantumilli", "AndhraPradesh", "521324", "9290815127", "Badarinath@gmail.com","Family");
+            dataTable.Rows.Add(5,"Manjusha", "Chedhalla", "Ponnur", "Guntur", "AndhraPradesh", "789065", "2345678912", "Manjusha@gmail.com","Profession");
         }
 
         /// <summary>
@@ -117,6 +132,7 @@ namespace AddressBookLinq
                 Console.WriteLine("EMail:- " + dataRow.Field<string>("EmailId"));
             }
         }
+
         /// <summary>
         /// Gets all contacts.
         /// </summary>
@@ -125,6 +141,7 @@ namespace AddressBookLinq
             foreach (DataRow dr in dataTable.AsEnumerable())
             {
                 Console.WriteLine("\n");
+                Console.WriteLine("PersonId:- " + dr.Field<Int32>("PersonID"));
                 Console.WriteLine("FirstName:- " + dr.Field<string>("FirstName"));
                 Console.WriteLine("lastName:- " + dr.Field<string>("LastName"));
                 Console.WriteLine("Address:- " + dr.Field<string>("Address"));
@@ -133,6 +150,8 @@ namespace AddressBookLinq
                 Console.WriteLine("zip:- " + dr.Field<string>("Zip"));
                 Console.WriteLine("phoneNumber:- " + dr.Field<string>("PhoneNumber"));
                 Console.WriteLine("EMail:- " + dr.Field<string>("EmailId"));
+                Console.WriteLine("PersonType:- " + dr.Field<string>("PersonType"));
+
             }
 
         }
