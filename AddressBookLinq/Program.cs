@@ -11,7 +11,7 @@ namespace AddressBookLinq
             while (true)
             {
                 Console.WriteLine("1)GetAllData\n" + "2)UpdatePerson\n"+"3)Delete person\n"+"4)RetriceCityOrState\n"+"5)CountCityandState\n"+
-                                   "7)OrderByFirstName");
+                                   "6)OrderByFirstName\n"+"7)CountByType");
 
                 try
                 {
@@ -52,6 +52,9 @@ namespace AddressBookLinq
                             Console.WriteLine("Enter your city name");
                             string orderByCity = Console.ReadLine();
                             addressBookManagement.OrderByFirstName(orderByCity);
+                            break;
+                        case 7:
+                            addressBookManagement.CountByType();
                             break;
                         default:
                             Console.WriteLine("Please Enter correct option");

@@ -134,6 +134,17 @@ namespace AddressBookLinq
         }
 
         /// <summary>
+        /// Counts the type of the by.
+        /// </summary>
+        public void CountByType()
+        {
+            var element = from contact in dataTable.AsEnumerable()
+                          group contact by contact.Field<string>("PersonType") into data
+                          select new { PersonTypeName = data.Key, count = data.Count() };
+            element.ToList().ForEach(elemen => Console.WriteLine($"ContactType : {elemen.PersonTypeName} \t Count = {elemen.count}"));
+        }
+
+        /// <summary>
         /// Gets all contacts.
         /// </summary>
         public void GetAllContacts()
@@ -155,5 +166,6 @@ namespace AddressBookLinq
             }
 
         }
+
     }
 }
